@@ -13,7 +13,7 @@ class velocity_X :CF_2
 {
 
 public: double operator()(double x, double y) const{
-        return -0.01;
+        return -y;
     }
 };
 
@@ -21,7 +21,7 @@ public: double operator()(double x, double y) const{
 class velocity_Y :CF_2
 {
 public: double operator()(double x, double y) const{
-        return 0.01;
+        return x;
     }
 };
 
@@ -33,8 +33,8 @@ public: double operator()(double x, double y) const{
 int main()
 {
 
-    int N = 51;
-    int M = 51;
+    int N = 161;
+    int M = 161;
     double xmin = -1;
     double xmax = 1;
     double ymin = -1;
@@ -100,7 +100,7 @@ int main()
 
 
     // Save Solution
-    //Eno.save_vtk("True_ENO_Const","Est_ENO_Const");
+    Eno.save_vtk("True_ENO_161","Est_ENO_161");
     //EnoCenter.save_vtk("True_CENTER","Est_CENTER");
 
     return 0;

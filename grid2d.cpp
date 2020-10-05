@@ -146,9 +146,9 @@ double Grid2D::dy_backward(vector<double> function, int n){
     }
 }
 
-double Grid2D::dx_centered(vector<double> function, int n){
+double Grid2D::dy_centered(vector<double> function, int n){
     try{
-        if (n <= M-1){
+        if (n <= M-1 && n>=0){
             // First order discretization of the first derivative at the boundary and no flux BC, thus Qij+1 = Qij
             double dyB = -function.at(n)+function.at(n+M); //Solve Q_ij+1 - Q_ij
             return dyB/(dy*dy);
@@ -158,6 +158,10 @@ double Grid2D::dx_centered(vector<double> function, int n){
             double dyB = -function.at(n)+function.at(n-M); //Solve Q_ij+1 - Q_ij
             return dyB/(dy*dy);
         }
+        else if (n > M*N-1 || n<0){
+            // First order discretization of the first derivative at the boundary and no flux BC, thus Qij+1 = Qij
+            return 0.0;
+        }
         else{
             double dyB = function.at(n-M)-2*function.at(n)+function.at(n+M); //Solve Q_ij+1 - Q_ij
             return dyB/(dy*dy);
@@ -165,13 +169,13 @@ double Grid2D::dx_centered(vector<double> function, int n){
 
 
     }  catch (const std::exception& e) {
-        cout<<"Exception! n out of range."<< e.what() << '\n';
+        cout<<"Exception! n out of range in Y."<< e.what() << '\n';
         return 0;
 
     }
 }
 
-double Grid2D::dy_centered(vector<double> function, int n){
+double Grid2D::dx_centered(vector<double> function, int n){
     try{
         if (n % N <= 10e-7){
             // First order discretization of the first derivative at the boundary and no flux BC, thus Qij+1 = Qij
@@ -190,7 +194,7 @@ double Grid2D::dy_centered(vector<double> function, int n){
 
 
     }  catch (const std::exception& e) {
-        cout<<"Exception! n out of range."<< e.what() << '\n';
+        cout<<"Exception! n out of range in X."<< e.what() << '\n';
         return 0;
 
     }

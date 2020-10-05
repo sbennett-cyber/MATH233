@@ -81,7 +81,7 @@ void ENO_Advection::one_Step_ENO(double dt){
     //loop through space
 #pragma omp parallel for
     for (int j = 0; j < N*M; j++){
-        cout<<"Thread number " << omp_get_thread_num() <<endl;
+       // cout<<"Thread number " << omp_get_thread_num() <<endl;
         double inX;
         double inY;
         double Center1;

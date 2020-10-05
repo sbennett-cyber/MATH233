@@ -80,7 +80,7 @@ vector<double> Setup::initial_cond(vector<double> X, vector<double> Y){
 vector<double> Setup::true_solution(vector<double> X, vector<double> Y, vector<double> VelX, vector<double> VelY, double dt){
     vector<double> t0;
     for (int j=0;j<N*M;j++){
-        if ((sqrt(((X[j]-VelX[j]*dt)-0.5)*((X[j]-VelX[j]*dt)-0.5)+(Y[j]-VelY[j]*dt)*(Y[j]-VelY[j]*dt)))-0.2<=0){
+        if ((sqrt((X[j]-0.5)*(X[j]-0.5)+Y[j]*Y[j]))-0.2<=0){
             t0.push_back(1);
         }
         else{
